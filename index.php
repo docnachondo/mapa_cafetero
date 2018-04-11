@@ -21,9 +21,9 @@ if(isset($_SESSION["usuario"])){
                 $muesta = true;
             }
         }
-        if($muesta){ ?><script type="text/javascript" src="js/busca.js?ver=1.026"></script>
-        <? }else{ ?><script type="text/javascript" src="js/muestraMapa.js?ver=1.000"></script>
-        <? } ?><link type="text/css" rel="stylesheet" href="css/estilo.css?ver=1.013"/>
+        if($muesta){ ?><script type="text/javascript" src="js/busca.js?ver=1.028"></script>
+        <? }else{ ?><script type="text/javascript" src="js/muestraMapa.js?ver=1.002"></script>
+        <? } ?><link type="text/css" rel="stylesheet" href="css/estilo.css?ver=1.014"/>
         <script type="text/javascript" src="js/general.js?ver=1.03"></script>
     </head>
     <body class="fondo">

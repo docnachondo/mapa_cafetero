@@ -32,5 +32,14 @@ class Pais {
         }
         return $arr;
     }
+    
+    public static function esPais($texto, $bd){
+        $bd->setConsulta("select count(id_pais) as cuenta from paises where nombre = ?");
+        $bd->ejecutar($texto);
+        if($it = $bd->resultado()){
+            return $it["cuenta"] > 0;
+        }
+        return false;
+    }
 
 }

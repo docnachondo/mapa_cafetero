@@ -64,11 +64,28 @@ window.onload = function () {
 function buscarPunto(){
     var direccion = document.getElementById('buscador').value;
     coder.geocode({'address':direccion}, function(respuesta, estado){
+        var peque = true;
         if(estado == 'OK'){
-            var coordenada = new scribblemaps.LatLng(respuesta[0].geometry.location.lat(), respuesta[0].geometry.location.lng());
-            sm.view.setCenter(coordenada);
-            sm.view.setZoom(18);
-            sm.ui.showCrosshairs();
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'ajax/esPais.php?pais='+direccion);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    if(xhr.responseText == 1){
+                        peque = false;
+                    }
+                    var coordenada = new scribblemaps.LatLng(respuesta[0].geometry.location.lat(), respuesta[0].geometry.location.lng());
+                    sm.view.setCenter(coordenada);
+                    if(peque){
+                        sm.view.setZoom(18);
+                    }else{
+                        sm.view.setZoom(7);
+                    }
+                    sm.ui.showCrosshairs();
+                } else {
+                    console.log('Fallo en request. Estado: ' + xhr.status);
+                }
+            };
+            xhr.send();
         }
     });
 }
