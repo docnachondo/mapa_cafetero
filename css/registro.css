@@ -1,0 +1,12 @@
+.condiciones{
+    display: none;
+}
+.val{
+    border: 1px solid #000000;
+}
+.invalido{
+    border: 1px solid #ff0000;
+}
+.valido{
+    border: 1px solid #00fa00;
+}

@@ -1,0 +1,4 @@
+HOLA @nombre@:
+Entra en el siguiente enlace para confirmar tu usuario, tras eso, podrás agregar tu localización al mapa resistente.
+has click aquí @enlace@?accion=confirma_alta&clave=@clave@&email=@email@
+¡Saludos!

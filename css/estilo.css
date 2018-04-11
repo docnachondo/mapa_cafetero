@@ -1,0 +1,133 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16-ene-2018, 13:10:35
+    Author     : Nacho
+*/
+
+div.clear{clear: both; margin-top: 10px;}
+div.clear.grande{clear: both; margin-top: 20px;}
+.sm_toolBox, .sm_zoomControl, .sm_mapTypeControl, .sm_colorPickerControl, .sm_colorPickerControl,
+.sm_lineSettingsControl, .sm_searchControl, .sm_settings, .sm_fullScreen{display: none}
+.agregar_elementos{position: absolute; top:0px; right: 0px; border: 1px solid #000; padding: 5px 10px; box-shadow: 1px 1px 5px #000; width: 300px; margin: 30px 50px;}
+.agregar_elementos > span {float: left;}
+.agregar_elementos > input[type=text] {float: right;}
+.agregar_elementos.abajo{top: 300px;}
+
+#el_mapa{width: 900px; height: 600px}
+#sugerencias{position: absolute; width: 300px; left: 10px; background-color: #fff; top: 30px}
+#sugerencias > .opcion{border: 1px solid #000000; margin-bottom: 5px; cursor: pointer;}
+
+.sm_infoWindow, .sm_infoWindow > div {height: auto !important;}
+
+.sm_infoWindow .sm_infoWindow{background: #fff; border: 1px solid #000; width: auto !important;}
+
+.sm_infoWindow .sm_close{top: 10px; right: 7px;}
+
+.sm_infoWindow > div > div > svg{display: none;}
+
+@media ( max-width:480px){
+    #el_mapa{width: 400px; height: 400px; margin-top: 200px;}
+    .agregar_elementos{right: auto !important; left: -30px;}
+}
+
+/*MENSAJES*/
+div.fondo{
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    z-index: 100;
+}
+
+div.centro{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    z-index: 101;
+}
+
+div.centro > div.Interior{
+    margin: 60px auto;
+    width: 95% !important;
+    text-align: center;
+    padding: 5px 10px;
+    background: #fff;
+    border: 1px solid #000;
+    box-shadow: 2px 2px 5px #000;
+    font-size: 25px;
+    padding-top: 10px;
+    max-height: 530px;
+}
+
+div.centro > div.Interior > div.caja{
+    margin: 5px;
+    width: 100%;
+    overflow-y: scroll;
+    height: 500px;
+}
+
+div.centro > div.Interior > img{
+    width: 70px;
+    display: block;
+    margin: 20px auto;
+}
+
+div.grande{
+    width: 90% !important;
+    max-width: 800px;
+    min-width: 300px;
+    padding: 0px 20px 20px !important;
+    text-align: left !important;
+}
+
+div.grande > p{
+    font-size: 18px;
+}
+
+div.cierre{
+    position: relative;
+    border: 2px solid #000;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 1px 8px;
+    right: -40px;
+    float: right;
+    bottom: 20px;
+    cursor: pointer;
+}
+
+.sm_infoWindow div{overflow: visible !important;}
+
+div.sm_infoWindow.ampliado{
+    width: 250px !important;
+}
+
+div.sm_infoWindow.ampliado .sm_close{
+    left: 250px;
+}
+
+.sm_infoWindow > img + div{visibility: hidden !important; height: 5px !important;}
+
+.sm_infoWindow .intereses{margin-top: 10px;}
+
+.sm_infoWindow .intereses > img {width: 50px;}
+
+.sm_infoWindow > .info_exta > div{clear: both;}
+
+.sm_infoWindow > .info_exta > div > span{float: left;}
+
+.sm_infoWindow > .info_exta > div > span+span{float: right;}
