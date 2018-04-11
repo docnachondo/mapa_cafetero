@@ -15,17 +15,6 @@ if(isset($_SESSION["usuario"])){
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiTV87XTOs3FTrWdw4bN0VlPcYmxhvV4I&libraries=places"></script>
         <script type="text/javascript" src="//scribblemaps.com/api/js/"></script>
         <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-        <script languague="javascript">
-          function mostrar() {
-              div = document.getElementById('registro');
-              div.style.display = '';
-          }
-
-          function cerrar() {
-              div = document.getElementById('registro');
-              div.style.display = 'none';
-          }
-        </script>
         <? $muesta = false;
         if(isset($usuario)){
             if($usuario->getActivo() != null){
@@ -35,36 +24,50 @@ if(isset($_SESSION["usuario"])){
         if($muesta){ ?><script type="text/javascript" src="js/busca.js?ver=1.026"></script>
         <? }else{ ?><script type="text/javascript" src="js/muestraMapa.js?ver=1.000"></script>
         <? } ?><link type="text/css" rel="stylesheet" href="css/estilo.css?ver=1.013"/>
-        <script type="text/javascript" src="js/general.js?ver=1.00"></script>
+        <script type="text/javascript" src="js/general.js?ver=1.03"></script>
     </head>
+
+
     <body class="fondo">
+      <div class="contenido">
         <? if(isset($_SESSION["mensaje"])) {?>
-            <div class="centro" style="opacity: 1;">
-                <div class="Interior grande">
-                    <div class="cierre" onclick="quitarCarga()">X</div>
-                    <div class="caja"><?=$_SESSION["mensaje"]?></div>
-                </div>
+            <div id="mensaje_sistema" class="flotante">
+                <a class="cerrarVentana" href="javascript:cerrar('#mensaje_sistema');">x</a>
+                <?=$_SESSION["mensaje"]?>
             </div>
         <? $_SESSION["mensaje"] = null;
         } ?>
+
+        <div id="cabecera">
+          <div id="logo"><img src="./images/LogoCafetera.png"></div>
+          <div id="titular">Mapa de la Resistencia</div>
+          <div id="menu">
+            <ul>
+              <li><a href="javascript:mostrar('#ventana');">Entrar</a></li>
+            </ul>
+          </div>
+        </div>
+
         <div id="el_mapa"></div>
+
         <? if(isset($usuario)){
             if($usuario->getActivo() != null){
                 ?>
                 <a href="funciones/controlador.php?accion=desconectar">SALIR</a>
-                <div class="agregar_elementos">
+                <div id="ventana" class="flotante"> <!-- style="display:none"> -->
+                  <div class="formulario">
                     <input type="hidden" id="twitter" value="<?=$usuario->getTwitter()?>"/>
                     <input type="hidden" id="id_oyente" value="<?=$usuario->getIdOyente()?>"/>
-                    <span>Direccion:</span> <input type="text" id="buscador" onkeyup="buscarSugerencias();"/>
+                    <input type="text" id="buscador" placeholder="escribe una dirección" onkeyup="buscarSugerencias();"/>
                     <div id="sugerencias"></div>
-                    <div class="clear"></div>
-                    <input type="button" id="buscar" value="BUSCAR" onclick="buscarPunto();"/>
-                    <div class="clear"></div>
+                    <input type="button" id="buscar" class="boton" value="BUSCAR" onclick="buscarPunto();"/>
                     <? if($usuario->getLat() == null) { ?>
-                        <input type="button" id="buscar" value="AGREGAR" onclick="agregarElemento();"/>
+                        <input type="button" id="buscar" class="boton" value="AGREGAR" onclick="agregarElemento();"/>
                     <? }else{ ?>
-                        <input type="button" id="buscar" value="MODIFICAR MI POSICIÓN" onclick="modificarElemento();"/>
+                        <input type="button" id="buscar" class="boton" value="MODIFICAR MI POSICIÓN" onclick="modificarElemento();"/>
                     <? } ?>
+                    <a class="cerrarVentana" href="javascript:cerrar('#ventana');">x</a>
+                  </div>
                 </div>
             <? }else{ ?>
                 <div class="agregar_elementos">
@@ -72,16 +75,17 @@ if(isset($_SESSION["usuario"])){
                 </div>
             <? } ?>
         <? }else{ ?>
-            <div id="registro" class="flotante">
+            <div id="ventana" class="flotante">
               <form class="formulario" method="post" action="funciones/controlador.php">
                 <input type="hidden" name="accion" value="login"/>
                 <input type="text" name="email" placeholder="tu email"/>
                 <input type="password" name="clave" placeholder="tu contraseña"/>
                 <input type="submit" value="Entrar" class="boton"/>
                 <p class="nueva">¿no tienes una cuenta? <a href="registro.php">crea una</a></p>
-                <a class="cerrarVentana" href="javascript:cerrar();">x</a>
+                <a class="cerrarVentana" href="javascript:cerrar('#ventana');">x</a>
               </form>
             </div>
         <? } ?>
+      </div>
     </body>
 </html>

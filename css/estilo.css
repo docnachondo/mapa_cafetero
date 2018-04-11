@@ -7,8 +7,7 @@ and open the template in the editor.
     Created on : 16-ene-2018, 13:10:35
     Author     : Nacho
 */
-
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
 
 div.clear{clear: both; margin-top: 10px;}
 div.clear.grande{clear: both; margin-top: 20px;}
@@ -19,17 +18,77 @@ div.clear.grande{clear: both; margin-top: 20px;}
 .agregar_elementos > input[type=text] {float: right;}
 .agregar_elementos.abajo{top: 300px;}
 
-
-
 .fondo {
-  background-color: #000;
   font-family: "Roboto", sans-serif;
+  background-color: #eee;
 }
 
-#el_mapa{
+.contenido {
   margin-left: auto;
   margin-right: auto;
   width: 900px;
+
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+#cabecera {
+  height: 115px;
+  background-color: #ddd;
+  border-bottom: #777 2px solid;
+  position: relative;
+  padding: 20px;
+}
+
+  #logo {
+    width: 201px;
+  }
+
+    #logo img{
+      width: 100%;
+    }
+
+  #titular {
+    width: 350px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    font-size: 3.3em;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+  }
+
+  #menu {
+    width: 100px;
+    float: right;
+    position: absolute;
+    bottom: 0;
+    right: 20px;
+  }
+
+    #menu ul {
+      list-style-type: none;
+    }
+
+      #menu ul a:link,
+      #menu ul a:visited {
+        text-decoration: none;
+        color: #555;
+      }
+
+      #menu ul a:hover {
+        color: #fff;
+      }
+
+#el_mapa{
   height: 600px;
 }
 
@@ -41,7 +100,7 @@ div.clear.grande{clear: both; margin-top: 20px;}
 
   width: 20%;
   position: absolute;
-  top: 150px;
+  top: 300px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10000;
@@ -92,6 +151,10 @@ div.clear.grande{clear: both; margin-top: 20px;}
   border-radius: 8px;
 }
 
+.formulario button {
+  background: #777;
+}
+
 .formulario .boton {
   font-family: "Roboto", sans-serif;
   font-weight: bold;
@@ -118,9 +181,14 @@ div.clear.grande{clear: both; margin-top: 20px;}
   font-size: 12px;
 }
 
-.formulario .nueva a {
+.formulario .nueva a:link,
+.formulario .nueva a:visited {
   color: #555;
   text-decoration: none;
+}
+
+.formulario .nueva a:hover {
+  color: #000;
 }
 
 
