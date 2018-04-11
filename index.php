@@ -15,17 +15,6 @@ if(isset($_SESSION["usuario"])){
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiTV87XTOs3FTrWdw4bN0VlPcYmxhvV4I&libraries=places"></script>
         <script type="text/javascript" src="//scribblemaps.com/api/js/"></script>
         <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-        <script languague="javascript">
-          function mostrar() {
-              div = document.getElementById('registro');
-              div.style.display = '';
-          }
-
-          function cerrar() {
-              div = document.getElementById('registro');
-              div.style.display = 'none';
-          }
-        </script>
         <? $muesta = false;
         if(isset($usuario)){
             if($usuario->getActivo() != null){
@@ -35,7 +24,7 @@ if(isset($_SESSION["usuario"])){
         if($muesta){ ?><script type="text/javascript" src="js/busca.js?ver=1.026"></script>
         <? }else{ ?><script type="text/javascript" src="js/muestraMapa.js?ver=1.000"></script>
         <? } ?><link type="text/css" rel="stylesheet" href="css/estilo.css?ver=1.013"/>
-        <script type="text/javascript" src="js/general.js?ver=1.00"></script>
+        <script type="text/javascript" src="js/general.js?ver=1.03"></script>
     </head>
     <body class="fondo">
         <? if(isset($_SESSION["mensaje"])) {?>
@@ -79,7 +68,7 @@ if(isset($_SESSION["usuario"])){
                 <input type="password" name="clave" placeholder="tu contraseña"/>
                 <input type="submit" value="Entrar" class="boton"/>
                 <p class="nueva">¿no tienes una cuenta? <a href="registro.php">crea una</a></p>
-                <a class="cerrarVentana" href="javascript:cerrar();">x</a>
+                <a class="cerrarVentana" href="javascript:cerrar('#registro');">x</a>
               </form>
             </div>
         <? } ?>
