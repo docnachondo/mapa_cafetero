@@ -71,6 +71,7 @@ if(isset($_SESSION["usuario"])){
                 <a class="cerrarVentana" href="javascript:cerrar('#registro');">x</a>
               </form>
             </div>
+            <a id="ver_registro" href="javascript:mostrar('#registro');">Ingresar</a>
         <? } ?>
     </body>
 </html>
