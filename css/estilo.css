@@ -3,10 +3,12 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : 16-ene-2018, 13:10:35
     Author     : Nacho
 */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 div.clear{clear: both; margin-top: 10px;}
 div.clear.grande{clear: both; margin-top: 20px;}
@@ -17,7 +19,111 @@ div.clear.grande{clear: both; margin-top: 20px;}
 .agregar_elementos > input[type=text] {float: right;}
 .agregar_elementos.abajo{top: 300px;}
 
-#el_mapa{width: 900px; height: 600px}
+
+
+.fondo {
+  background-color: #000;
+  font-family: "Roboto", sans-serif;
+}
+
+#el_mapa{
+  margin-left: auto;
+  margin-right: auto;
+  width: 900px;
+  height: 600px;
+}
+
+.flotante {
+  background-color: #fff;
+  text-align: center;
+  margin: 0 auto 100px;
+  padding: 45px;
+
+  width: 20%;
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+
+  -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+  .flotante a.cerrarVentana {
+   position: absolute;
+   top:-14px;
+   right:-11px;
+   background-color: #777;
+   padding:2px 5px 5px 5px;
+   font-size: 1.4em;
+   font-weight: bold;
+   text-decoration: none;
+   line-height: 1;
+   color:#fff;
+
+   -moz-border-radius: 8px;
+   -webkit-border-radius: 8px;
+   border-radius: 8px;
+
+   -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+   -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+   box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.5);
+  }
+
+.formulario input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #eee;
+  width: 100%;
+  border: 0;
+  margin: 0 0 20px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.formulario .boton {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  outline: 0;
+  background: #777;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.formulario .boton:hover,
+.formulario .boton:active,
+.formulario .boton:focus {
+  background: #aaa;
+}
+
+.formulario .nueva {
+  margin: 15px 0 0;
+  color: #aaa;
+  font-size: 12px;
+}
+
+.formulario .nueva a {
+  color: #555;
+  text-decoration: none;
+}
+
+
 #sugerencias{position: absolute; width: 300px; left: 10px; background-color: #fff; top: 30px}
 #sugerencias > .opcion{border: 1px solid #000000; margin-bottom: 5px; cursor: pointer;}
 

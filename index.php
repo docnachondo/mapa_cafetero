@@ -15,6 +15,17 @@ if(isset($_SESSION["usuario"])){
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiTV87XTOs3FTrWdw4bN0VlPcYmxhvV4I&libraries=places"></script>
         <script type="text/javascript" src="//scribblemaps.com/api/js/"></script>
         <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+        <script languague="javascript">
+          function mostrar() {
+              div = document.getElementById('registro');
+              div.style.display = '';
+          }
+
+          function cerrar() {
+              div = document.getElementById('registro');
+              div.style.display = 'none';
+          }
+        </script>
         <? $muesta = false;
         if(isset($usuario)){
             if($usuario->getActivo() != null){
@@ -26,7 +37,7 @@ if(isset($_SESSION["usuario"])){
         <? } ?><link type="text/css" rel="stylesheet" href="css/estilo.css?ver=1.013"/>
         <script type="text/javascript" src="js/general.js?ver=1.00"></script>
     </head>
-    <body>
+    <body class="fondo">
         <? if(isset($_SESSION["mensaje"])) {?>
             <div class="centro" style="opacity: 1;">
                 <div class="Interior grande">
@@ -61,15 +72,16 @@ if(isset($_SESSION["usuario"])){
                 </div>
             <? } ?>
         <? }else{ ?>
-            <a href="registro.php">REGISTRATE</a>
-            <form class="registro" method="post" action="funciones/controlador.php">
+            <div id="registro" class="flotante">
+              <form class="formulario" method="post" action="funciones/controlador.php">
                 <input type="hidden" name="accion" value="login"/>
-                <span>Email: </span> <input type="text" name="email"/>
-                <div class="clear"></div>
-                <span>Clave: </span> <input type="password" name="clave"/>
-                <div class="clear"></div>
-                <input type="submit" value="Entrar"/>
-            </form>
+                <input type="text" name="email" placeholder="tu email"/>
+                <input type="password" name="clave" placeholder="tu contraseña"/>
+                <input type="submit" value="Entrar" class="boton"/>
+                <p class="nueva">¿no tienes una cuenta? <a href="registro.php">crea una</a></p>
+                <a class="cerrarVentana" href="javascript:cerrar();">x</a>
+              </form>
+            </div>
         <? } ?>
     </body>
 </html>
