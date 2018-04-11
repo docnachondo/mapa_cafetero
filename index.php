@@ -28,11 +28,9 @@ if(isset($_SESSION["usuario"])){
     </head>
     <body class="fondo">
         <? if(isset($_SESSION["mensaje"])) {?>
-            <div class="centro" style="opacity: 1;">
-                <div class="Interior grande">
-                    <div class="cierre" onclick="quitarCarga()">X</div>
-                    <div class="caja"><?=$_SESSION["mensaje"]?></div>
-                </div>
+            <div id="mensaje_sistema" class="flotante">
+                <a class="cerrarVentana" href="javascript:cerrar('#mensaje_sistema');">x</a>
+                <?=$_SESSION["mensaje"]?>
             </div>
         <? $_SESSION["mensaje"] = null;
         } ?>
