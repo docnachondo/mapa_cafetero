@@ -1,4 +1,5 @@
 <?php
+require_once '../funciones/constantes.php';
 require_once '../clases/BD.php';
 require_once '../clases/Pais.php';
 session_start();

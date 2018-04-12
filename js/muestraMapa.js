@@ -17,7 +17,6 @@ var hacerClickMarca = function(){
     xhr.open('GET', 'ajax/obtieneImagen.php?cuenta='+cuenta+"&oyente="+oyente);
     xhr.onload = function() {
         if (xhr.status === 200) {
-            console.log(xhr.responseText);
             var respuesta = xhr.responseText.split("|");
             img.setAttribute("src", respuesta[0]);
             ventanaInterior.prepend(img);
