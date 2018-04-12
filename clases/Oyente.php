@@ -1,4 +1,5 @@
 <?
+require_once 'BD.php';
 
 class Oyente{
     private $idOyente;
@@ -226,4 +227,27 @@ class Oyente{
         return null;
     }
 
+    public static function oyentePorPais($idPais, $bd){
+        $bd->setConsulta("select o.* from oyentes o inner join paises p on p.id_pais = o.id_pais where o.id_pais = ?");
+        $bd->ejecutar($idPais);
+        $lista = array();
+        while($it = $bd->resultado()){
+            $oyente = new Oyente($it["id_oyente"], $it["twitter"], $it["id_pais"], $it["lat"], $it["lon"], $it["nombre"],
+                    $it["apellido"], $it["email"], $it["mecenas"], $it["fecha_nacimiento"], $it["telefono"], $it["clave"], $it["activo"], $it["admin"]);
+            array_push($lista, $oyente);
+        }
+        return $lista;
+    }
+
+    public static function oyentesPorInteres($idInteres, $bd){
+        $bd->setConsulta("select o.* from oyentes o inner join inte_oyen p on p.id_oyente = o.id_oyente where p.id_interes = ?");
+        $bd->ejecutar($idInteres);
+        $lista = array();
+        while($it = $bd->resultado()){
+            $oyente = new Oyente($it["id_oyente"], $it["twitter"], $it["id_pais"], $it["lat"], $it["lon"], $it["nombre"],
+                    $it["apellido"], $it["email"], $it["mecenas"], $it["fecha_nacimiento"], $it["telefono"], $it["clave"], $it["activo"], $it["admin"]);
+            array_push($lista, $oyente);
+        }
+        return $lista;
+    }
 }
