@@ -13,6 +13,8 @@ var hacerClickMarca = function(){
     var img = document.createElement("img");
     var nombre = document.createElement("div");
     nombre.className = "nombre_twitter";
+    ventanaInterior.getElementsByClassName("enlaceTwitter")[0].href = "https://twitter.com/"+cuenta;
+
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'ajax/obtieneImagen.php?cuenta='+cuenta+"&oyente="+oyente);
     xhr.onload = function() {
