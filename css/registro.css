@@ -1,5 +1,16 @@
 .condiciones{
     display: none;
+    width: 95%;
+    max-width: 850px;
+    height: 80%;
+    top: 30px;
+    max-height: 700px;
+    padding: 30px 10px;
+}
+
+.condiciones > .caja{
+    height: 100%;
+    overflow-y: scroll;
 }
 .val{
     border: 1px solid #000000;

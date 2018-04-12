@@ -154,10 +154,3 @@ function validaClave(){
         return false;
     }
 }
-
-function ver_condiciones(){
-    var interior = $('.condiciones').html();
-    $('body').prepend('<div class="fondo"></div><div class="centro"><div class="Interior grande"><div class="cierre" onclick="quitarCarga()">X</div>'+interior+'</div></div>');
-    $('.fondo').animate({'opacity': 0.25}, 300);
-    $('.centro').animate({'opacity': 1}, 300);
-}

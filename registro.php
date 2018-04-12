@@ -122,11 +122,12 @@ if(isset($_SESSION["usuario"])){
               <input type="password" name="clave2" class="val"/>
             </div>
             <div class="clear"></div>
-            <span>Confirmo que he leido y acepto las <a href="#" onclick="ver_condiciones()">condiciones</a></span> <input type="checkbox" name="condiciones"/>
+            <span>Confirmo que he leido y acepto las <a href="javascript:mostrar('.condiciones');">condiciones</a></span> <input type="checkbox" name="condiciones"/>
             <div class="clear"></div>
             <input type="submit" value="Registrar" class="boton"/>
           </form>
-          <div class="condiciones">
+          <div class="condiciones flotante">
+              <a class="cerrarVentana" href="javascript:cerrar('.condiciones');">x</a>
               <div class="caja">
                   <h2>Aviso Legal y Política de Privacidad</h2>
                   <p><b>Versión: Abril 2018</b></p>
