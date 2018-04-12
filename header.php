@@ -9,10 +9,10 @@
                 <li><a href="funciones/controlador.php?accion=desconectar">Salir</a></li>
             <? } ?>
         <? }else{
-            if(!$_SERVER['PHP_SELF'] == "/registro.php"){ ?>
+            if($_SERVER['PHP_SELF'] != "/registro.php"){ ?>
                 <li><a href="javascript:mostrar('#ventana2');">Buscar</a></li>
             <? } ?>
-        <li><a href="javascript:mostrar('#ventana');">Entrar</a></li>
+            <li><a href="javascript:mostrar('#ventana');">Entrar</a></li>
         <? } ?>
     </ul>
   </div>
