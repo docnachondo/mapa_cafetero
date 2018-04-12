@@ -77,7 +77,7 @@ function buscarPunto(){
                     if(peque){
                         sm.view.setZoom(18);
                     }else{
-                        sm.view.setZoom(8);
+                        sm.view.setZoom(7);
                     }
                     sm.ui.showCrosshairs();
                 } else {

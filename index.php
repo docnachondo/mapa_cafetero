@@ -21,10 +21,10 @@ if(isset($_SESSION["usuario"])){
                 $muesta = true;
             }
         }
-        if($muesta){ ?><script type="text/javascript" src="js/busca.js?ver=1.028"></script>
-        <? }else{ ?><script type="text/javascript" src="js/muestraMapa.js?ver=1.002"></script>
-        <? } ?><link type="text/css" rel="stylesheet" href="css/estilo.css?ver=1.014"/>
-        <script type="text/javascript" src="js/general.js?ver=1.03"></script>
+        if($muesta){ ?><script type="text/javascript" src="js/busca.js?ver=1.029"></script>
+        <? }else{ ?><script type="text/javascript" src="js/muestraMapa.js?ver=1.003"></script>
+        <? } ?><link type="text/css" rel="stylesheet" href="css/estilo.css?ver=1.015"/>
+        <script type="text/javascript" src="js/general.js?ver=1.04"></script>
     </head>
 
 
@@ -50,6 +50,7 @@ if(isset($_SESSION["usuario"])){
               <li><a href="funciones/controlador.php?accion=desconectar">Salir</a></li>
               <? } ?>
               <? }else{ ?>
+              <li><a href="javascript:mostrar('#ventana2');">Buscar</a></li>
               <li><a href="javascript:mostrar('#ventana');">Entrar</a></li>
             <? } ?>
             </ul>
@@ -82,6 +83,15 @@ if(isset($_SESSION["usuario"])){
                 </div>
             <? } ?>
         <? }else{ ?>
+            <div id="ventana2" class="flotante" style="display: none;">
+                <div class="formulario">
+                    <input type="text" id="buscador" placeholder="escribe una dirección" onkeyup="buscarSugerencias();"/>
+                    <div id="sugerencias"></div>
+                    <input type="button" id="buscar" class="boton" value="BUSCAR" onclick="buscarPunto();"/>
+                    <a class="cerrarVentana" href="javascript:cerrar('#ventana2');">x</a>
+                </div>
+            </div>
+        
             <div id="ventana" class="flotante">
               <form class="formulario" method="post" action="funciones/controlador.php">
                 <input type="hidden" name="accion" value="login"/>
