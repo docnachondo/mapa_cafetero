@@ -88,11 +88,18 @@ div.clear.grande{clear: both; margin-top: 20px;}
         color: #fff;
       }
 
+      #menu ul li {
+        padding-top: 4px;
+        padding-bottom: 4px;
+      }
+
 #el_mapa{
   height: 600px;
 }
 
 .flotante {
+  color: #777;
+  font-size: 1.2em; 
   background-color: #fff;
   text-align: center;
   margin: 0 auto 100px;
