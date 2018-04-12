@@ -18,7 +18,8 @@ if(isset($_SESSION["usuario"])){
         <script type="text/javascript" src="js/registro.js?ver=1.08"></script>
         <script type="text/javascript" src="js/general.js?ver=1.00"></script>
     </head>
-    <body>
+    <body class="fondo">
+      <div class="contenido">
         <? if(isset($_SESSION["mensaje"])) {?>
             <div class="centro" style="opacity: 1;">
                 <div class="Interior grande">
@@ -27,13 +28,16 @@ if(isset($_SESSION["usuario"])){
                 </div>
             </div>
         <? $_SESSION["mensaje"] = null;
-        } 
+        }
         $oyente = null;
         if(isset($_SESSION["temp"])){
             $oyente = $_SESSION["temp"];
-        } 
+        }
         $bd = new BD();
         ?>
+
+        <?php include("header.php"); ?>
+
         <h1>REGISTRO</h1>
         <form class="registro" method="post" action="funciones/controlador.php">
             <input type="hidden" name="accion" value="alta_usuario"/>
@@ -112,5 +116,6 @@ if(isset($_SESSION["usuario"])){
             </div>
         </div>
         <? $_SESSION["temp"] = null; ?>
+      </div>
     </body>
 </html>
