@@ -154,7 +154,7 @@ div.clear.grande{clear: both; margin-top: 20px;}
   width: 100%;
   border: 0;
   margin: 10px 0 20px;
-  padding: 15px;
+  padding: 5px 15px;
   box-sizing: border-box;
   font-size: 14px;
 
@@ -186,7 +186,11 @@ div.clear.grande{clear: both; margin-top: 20px;}
 }
 
 .formulario select {
-  height: 40px;
+  background: url(../images/dropdown.png) no-repeat 103%;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #eee;
 }
 
 .formulario button {
@@ -201,7 +205,7 @@ div.clear.grande{clear: both; margin-top: 20px;}
   background: #777;
   width: 100%;
   border: 0;
-  padding: 15px;
+  padding: 5px 15px;
   color: #fff;
   font-size: 14px;
   cursor: pointer;
@@ -227,6 +231,17 @@ div.clear.grande{clear: both; margin-top: 20px;}
 
 .formulario .nueva a:hover {
   color: #000;
+}
+
+div.intereses > div.cont-interes{
+  float: left;
+  width: 33%;
+}
+
+div.intereses > div.cont-interes > img, div.cont-interes > input{
+  display: block;
+  float: none;
+  margin: 5px auto;
 }
 
 #registro {
@@ -379,3 +394,5 @@ div.sm_infoWindow.ampliado .sm_close{
 .sm_infoWindow > .info_exta > div > span{float: left;}
 
 .sm_infoWindow > .info_exta > div > span+span{float: right;}
+
+#ventana2{top: 20px; padding: 5px 20px;}

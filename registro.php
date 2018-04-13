@@ -13,8 +13,8 @@ if(isset($_SESSION["usuario"])){
         <title>Mapa Cafetero</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-        <link type="text/css" rel="stylesheet" href="css/estilo.css?ver=1.013"/>
-        <link type="text/css" rel="stylesheet" href="css/registro.css?ver=1.004"/>
+        <link type="text/css" rel="stylesheet" href="css/estilo.css?ver=1.019"/>
+        <link type="text/css" rel="stylesheet" href="css/registro.css?ver=1.005"/>
         <script type="text/javascript" src="js/registro.js?ver=1.08"></script>
         <script type="text/javascript" src="js/general.js?ver=1.00"></script>
     </head>
@@ -40,7 +40,7 @@ if(isset($_SESSION["usuario"])){
 
         <div id="registro">
           <h1>Formulario de registro</h1>
-          <form class="formulario" method="post" action="funciones/controlador.php">
+          <form class="formulario registro" method="post" action="funciones/controlador.php">
             <input type="hidden" name="accion" value="alta_usuario"/>
             <div class="mitad">
               <span>Cuenta de Twitter: </span>
@@ -106,8 +106,10 @@ if(isset($_SESSION["usuario"])){
             <div class="intereses">
                 <? $lista = Interes::listar($bd);
                 foreach ($lista as $interes){ ?>
-                <img class="izq" src="images/<?=$interes->getFoto()?>" title="<?=$interes->getNombre()?>"/>
-                <input type="checkbox" class="izq" name="int_<?=$interes->getIdInteres()?>"/>
+                <div class="cont-interes">
+                    <img class="izq" src="images/<?=$interes->getFoto()?>" title="<?=$interes->getNombre()?>"/>
+                    <input type="checkbox" class="izq" name="int_<?=$interes->getIdInteres()?>"/>
+                </div>
                 <? } ?>
             </div>
             <div class="clear"></div>

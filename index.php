@@ -23,10 +23,9 @@ if(isset($_SESSION["usuario"])){
         }
         if($muesta){ ?><script type="text/javascript" src="js/busca.js?ver=1.029"></script>
         <? }else{ ?><script type="text/javascript" src="js/muestraMapa.js?ver=1.003"></script>
-        <? } ?><link type="text/css" rel="stylesheet" href="css/estilo.css?ver=1.015"/>
-        <script type="text/javascript" src="js/general.js?ver=1.04"></script>
+        <? } ?><link type="text/css" rel="stylesheet" href="css/estilo.css?ver=1.019"/>
+        <script type="text/javascript" src="js/general.js?ver=1.05"></script>
     </head>
-
 
     <body class="fondo">
       <div class="contenido">
@@ -45,7 +44,7 @@ if(isset($_SESSION["usuario"])){
         <? if(isset($usuario)){
             if($usuario->getActivo() != null){
                 ?>
-                <div id="ventana" class="flotante">
+                <div id="ventana2" class="flotante">
                   <div class="formulario">
                     <input type="hidden" id="twitter" value="<?=$usuario->getTwitter()?>"/>
                     <input type="hidden" id="id_oyente" value="<?=$usuario->getIdOyente()?>"/>
@@ -57,7 +56,7 @@ if(isset($_SESSION["usuario"])){
                     <? }else{ ?>
                         <input type="button" id="buscar" class="boton" value="MODIFICAR MI POSICIÓN" onclick="modificarElemento();"/>
                     <? } ?>
-                    <a class="cerrarVentana" href="javascript:cerrar('#ventana');">x</a>
+                    <a class="cerrarVentana" href="javascript:cerrar('#ventana2');">x</a>
                   </div>
                 </div>
             <? }else{ ?>

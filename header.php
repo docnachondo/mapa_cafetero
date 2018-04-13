@@ -5,7 +5,7 @@
     <ul>
         <? if(isset($usuario)){
             if($usuario->getActivo() != null){ ?>
-                <li><a href="javascript:mostrar('#ventana');">Buscar</a></li>
+                <li><a href="javascript:mostrar('#ventana2');">Buscar</a></li>
                 <li><a href="funciones/controlador.php?accion=desconectar">Salir</a></li>
             <? } ?>
         <? }else{
