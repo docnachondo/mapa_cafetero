@@ -60,8 +60,8 @@ function altaUsuario(){
 
     $fechaNacimiento = "STR_TO_DATE('".$_POST["anyo"]."-".$_POST["mes"]."-".$_POST["dia"]."','%Y-%m-%d')";
     
-    $oyente = new Oyente(null, $_POST["twitter"], $_POST["pais"], null, null, $_POST["nombre"], $_POST["apellido"],
-            $_POST["email"], false, $fechaNacimiento, $_POST["telefono"], $_POST["clave"], null);
+    $oyente = new Oyente(null, trim($_POST["twitter"]), trim($_POST["pais"]), null, null, trim($_POST["nombre"]), trim($_POST["apellido"]),
+            trim($_POST["email"]), false, $fechaNacimiento, trim($_POST["telefono"]), trim($_POST["clave"]), null);
     $bd = new BD();
 
     $headers = get_headers("https://twitter.com/".$oyente->getTwitter());
