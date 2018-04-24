@@ -50,4 +50,3 @@ create table inte_oyen(
     constraint fk_inte_oyen_inte foreign key (id_interes) references intereses(id_interes),
     constraint fk_inte_oyen_oyen foreign key (id_oyente) references oyentes(id_oyente)
 );
-

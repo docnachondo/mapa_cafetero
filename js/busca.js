@@ -6,10 +6,10 @@ var servicioAutocompletar = new google.maps.places.AutocompleteService();
 var hacerClickMarca = function(){
     var ventana = document.getElementsByClassName('sm_infoWindow')[0];
     var ventanaInterior = ventana.getElementsByClassName('sm_infoWindow')[0];
-    var cuenta = ventanaInterior.getElementsByClassName("enlaceTwitter")[0].innerHTML;
+    var cuenta = ventanaInterior.getElementsByClassName("enlaceTwitter")[0].innerHTML.trim();
     var oyente = document.getElementsByName("id_oyente")[0].value;
 
-    cuenta = cuenta.substring(1, cuenta.length);
+    cuenta = cuenta.substring(1, cuenta.length).trim();
     var img = document.createElement("img");
     var nombre = document.createElement("div");
     nombre.className = "nombre_twitter";
@@ -96,6 +96,13 @@ function agregarElemento() {
     var coordenada = sm.view.getCenter();
     var twitter = document.getElementById('twitter').value;
     var idOyente = document.getElementById('id_oyente').value;
+
+    sm.map.loadById("ghQCV2cSHo", function(){
+        sm.ui.showCrosshairs();
+        sm.ui.addListener('infowindow_open', hacerClickMarca);
+    });
+
+    sm.view.setCenter(coordenada);
 
     if(twitter.substring(0,1) == "@"){
         twitter = twitter.substring(1, nombre.length);
