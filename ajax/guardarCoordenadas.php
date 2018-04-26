@@ -18,5 +18,7 @@ if(Oyente::cambiarCoordenada($idOyente, $coordenada, $bd)){
     $oyente->setLon($coordenada[1]);
     $_SESSION["usuario"] = $oyente;
     echo 1;
+    $_SESSION["mensaje"] = "¡¡¡Ya estás en el mapa!!!";
 }
 echo 0;
+echo "|cafemapa487693hu";

@@ -226,6 +226,17 @@ class Oyente{
         }
         return null;
     }
+    
+    public static function oyentePorTwitter($cuenta, $bd){
+        $bd->setConsulta("select * from oyentes where twitter = ?");
+        $bd->ejecutar($cuenta);
+        if($it = $bd->resultado()){
+            $oyente = new Oyente($it["id_oyente"], $it["twitter"], $it["id_pais"], $it["lat"], $it["lon"], $it["nombre"],
+                    $it["apellido"], $it["email"], $it["mecenas"], $it["fecha_nacimiento"], $it["telefono"], $it["clave"], $it["activo"], $it["admin"]);
+            return $oyente;
+        }
+        return null;
+    }
 
     public static function oyentePorPais($idPais, $bd){
         $bd->setConsulta("select o.* from oyentes o inner join paises p on p.id_pais = o.id_pais where o.id_pais = ?");
@@ -250,4 +261,17 @@ class Oyente{
         }
         return $lista;
     }
+
+    public static function todosActivosMarcados($bd){
+        $bd->setConsulta("select id_oyente, twitter, lat, lon from oyentes where lat is not null and activo is not null");
+        $bd->ejecutar();
+        $arr = array();
+        
+        while($it = $bd->resultado()){
+            array_push($arr, $it);
+        }
+        
+        return $arr;
+    }
+
 }

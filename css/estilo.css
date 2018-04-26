@@ -104,12 +104,12 @@ div.clear.grande{clear: both; margin-top: 20px;}
   font-size: 1.2em;
   background-color: #fff;
   text-align: center;
-  margin: 0 auto 100px;
-  padding: 45px;
+  margin: 0px auto 0px;
+  padding: 15px 30px;
 
   width: 20%;
   position: absolute;
-  top: 300px;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10000;
@@ -281,7 +281,7 @@ hr {
 }
 
 
-#sugerencias{position: absolute; width: 300px; left: 10px; background-color: #fff; top: 30px}
+#sugerencias{position: absolute; width: 400px; left: 10px; background-color: #fff; top: 45px; font-size: 15px;}
 #sugerencias > .opcion{border: 1px solid #000000; margin-bottom: 5px; cursor: pointer;}
 
 .sm_infoWindow, .sm_infoWindow > div {height: auto !important;}
@@ -395,4 +395,4 @@ div.sm_infoWindow.ampliado .sm_close{
 
 .sm_infoWindow > .info_exta > div > span+span{float: right;}
 
-#ventana2{top: 20px; padding: 5px 20px;}
+#ventana2{padding: 5px 20px;}

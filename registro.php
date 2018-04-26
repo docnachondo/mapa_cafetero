@@ -13,10 +13,10 @@ if(isset($_SESSION["usuario"])){
         <title>Mapa Cafetero</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-        <link type="text/css" rel="stylesheet" href="css/estilo.css?ver=1.019"/>
-        <link type="text/css" rel="stylesheet" href="css/registro.css?ver=1.005"/>
-        <script type="text/javascript" src="js/registro.js?ver=1.08"></script>
-        <script type="text/javascript" src="js/general.js?ver=1.00"></script>
+        <link type="text/css" rel="stylesheet" href="css/estilo.css?ver=<?=$GLOBALS["version"]?>"/>
+        <link type="text/css" rel="stylesheet" href="css/registro.css?ver=<?=$GLOBALS["version"]?>"/>
+        <script type="text/javascript" src="js/registro.js?ver=<?=$GLOBALS["version"]?>"></script>
+        <script type="text/javascript" src="js/general.js?ver=<?=$GLOBALS["version"]?>"></script>
     </head>
     <body class="fondo">
       <div class="contenido">
@@ -35,9 +35,7 @@ if(isset($_SESSION["usuario"])){
         }
         $bd = new BD();
         ?>
-
         <?php include("header.php"); ?>
-
         <div id="registro">
           <h1>Formulario de registro</h1>
           <form class="formulario registro" method="post" action="funciones/controlador.php">

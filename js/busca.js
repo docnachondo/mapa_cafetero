@@ -6,17 +6,14 @@ var servicioAutocompletar = new google.maps.places.AutocompleteService();
 var hacerClickMarca = function(){
     var ventana = document.getElementsByClassName('sm_infoWindow')[0];
     var ventanaInterior = ventana.getElementsByClassName('sm_infoWindow')[0];
-    var cuenta = ventanaInterior.getElementsByClassName("enlaceTwitter")[0].innerHTML.trim();
-    var oyente = document.getElementsByName("id_oyente")[0].value;
-
+    var cuenta = ventanaInterior.getElementsByTagName("a")[0].innerHTML.trim();
     cuenta = cuenta.substring(1, cuenta.length).trim();
     var img = document.createElement("img");
     var nombre = document.createElement("div");
     nombre.className = "nombre_twitter";
-    ventanaInterior.getElementsByClassName("enlaceTwitter")[0].href = "https://twitter.com/"+cuenta;
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'ajax/obtieneImagen.php?cuenta='+cuenta+"&oyente="+oyente);
+    xhr.open('GET', 'ajax/obtieneImagen.php?cuenta='+cuenta);
     xhr.onload = function() {
         if (xhr.status === 200) {
             var respuesta = xhr.responseText.split("|");
@@ -63,6 +60,7 @@ window.onload = function () {
 };
 
 function buscarPunto(){
+    document.getElementById("sugerencias").innerHTML = "";
     var direccion = document.getElementById('buscador').value;
     coder.geocode({'address':direccion}, function(respuesta, estado){
         var peque = true;
@@ -71,11 +69,11 @@ function buscarPunto(){
             xhr.open('GET', 'ajax/esPais.php?pais='+direccion);
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    console.log(xhr.responseText);
                     if(xhr.responseText == 1){
                         peque = false;
                     }
                     var coordenada = new scribblemaps.LatLng(respuesta[0].geometry.location.lat(), respuesta[0].geometry.location.lng());
+                    sm.view.setCenter(coordenada);
                     sm.view.setCenter(coordenada);
                     if(peque){
                         sm.view.setZoom(18);
@@ -89,71 +87,70 @@ function buscarPunto(){
             };
             xhr.send();
         }
-    });
+    }); 
 }
 
-function agregarElemento() {
+function agregarElemento(borrar) {
     var coordenada = sm.view.getCenter();
     var twitter = document.getElementById('twitter').value;
     var idOyente = document.getElementById('id_oyente').value;
 
-    sm.map.loadById("ghQCV2cSHo", function(){
-        sm.ui.showCrosshairs();
-        sm.ui.addListener('infowindow_open', hacerClickMarca);
-    });
-
-    sm.view.setCenter(coordenada);
-
     if(twitter.substring(0,1) == "@"){
-        twitter = twitter.substring(1, nombre.length);
+        twitter = twitter.substring(1, twitter.length);
     }
-    var marcador = sm.draw.marker(coordenada, '<a href="https://twitter.com/'+twitter+'" class="enlaceTwitter" target="_blank">@'+twitter+'</a><input type="hidden" name="id_oyente" value="'+idOyente+'"/>', {'imgSrc': '//az766722.vo.msecnd.net/user/marker/2018/01/17/ZUxRP2.png'});
-    marcador.setTitle(twitter);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'ajax/guardarCoordenadas.php?oyente='+idOyente+"&coordenada="+coordenada);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            if(xhr.responseText == "1");
-            setTimeout(function(){
-                sm.view.setZoom(2);
-                var coordenada = new scribblemaps.LatLng(37.99616267972814, 1.0546875000000002);
-                sm.view.setCenter(coordenada);
-                var opciones = new scribblemaps.SaveOptions({
-                    id: "ghQCV2cSHo",
-                    password: 'cafemapa487693hu',
-                    title: 'Mapa Cafetero',
-                    descripcion: "Mapa de la resistencia cafetera",
-                    listed: true,
-                    secure: false,
-                    projectId: null,
-                    groupCode: null
-                });
-                sm.map.save(opciones, function(respuesta){
-                    location.reload();
-                },
-                function(respuesta){
-                    console.log(respuesta);
-                });
-            }, 1000);
-        } else {
-            console.log('Fallo en request. Estado: ' + xhr.status);
+    sm.map.loadById("ghQCV2cSHo", function(){
+        sm.view.setCenter(coordenada);
+        if(borrar){
+            var listaMarcadores = sm.map.getOverlays();
+            for(var i in listaMarcadores){
+                var marcador = listaMarcadores[i];
+                if(twitter == marcador.getTitle()){
+                    marcador.remove();
+                }
+            }
         }
-    };
-    xhr.send();
+
+        var marcador = sm.draw.marker(coordenada, '<a href="https://twitter.com/'+twitter+'" target="_blank">@'+twitter+'</a><input type="hidden" name="id_oyente" value="'+idOyente+'"/>', {'imgSrc': '//az766722.vo.msecnd.net/user/marker/2018/01/17/ZUxRP2.png'});
+        marcador.setTitle(twitter);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'ajax/guardarCoordenadas.php?oyente='+idOyente+"&coordenada="+coordenada);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var respuestas = xhr.responseText.split("|");
+                if(respuestas[0] == "1");
+                setTimeout(function(){
+                    sm.view.setZoom(2);
+                    var coordenada = new scribblemaps.LatLng(37.99616267972814, 1.0546875000000002);
+                    sm.view.setCenter(coordenada);
+                    var opciones = new scribblemaps.SaveOptions({
+                        id: "ghQCV2cSHo",
+                        password: respuestas[1],
+                        title: 'Mapa Cafetero',
+                        descripcion: "Mapa de la resistencia cafetera",
+                        listed: true,
+                        secure: false,
+                        projectId: null,
+                        groupCode: null
+                    });
+                    sm.map.save(opciones, function(respuesta){
+                        location.reload();
+                    },
+                    function(respuesta){
+                        console.log(respuesta);
+                    });
+                }, 1000);
+            } else {
+                console.log('Fallo en request. Estado: ' + xhr.status);
+            }
+        };
+        xhr.send();
+    });
 }
 
 function modificarElemento(){
-    var listaMarcadores = sm.map.getOverlays();
-    var twitter = document.getElementById('twitter').value;
-    
-    for(var i in listaMarcadores){
-        var marcador = listaMarcadores[i];
-        if(twitter == marcador.getTitle()){
-            marcador.remove();
-            agregarElemento();
-        }
-    }
+    agregarElemento(true);
 }
 
 function verPosicion(){
@@ -169,6 +166,6 @@ function buscarSugerencias(){
 function elegirOpcion(ele){
     var texto = ele.innerHTML;
     document.getElementById('buscador').value = texto;
-    document.getElementById("sugerencias").innerHTML = "";
+    buscarPunto();
     buscarPunto();
 }

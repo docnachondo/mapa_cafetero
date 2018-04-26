@@ -11,7 +11,6 @@ if($_SERVER["HTTP_REFERER"] !=  $GLOBALS["ruta"]){
 }
 
 $cuenta = $_REQUEST["cuenta"];
-$idOyente = $_REQUEST["oyente"];
 $cur = curl_init();
 
 curl_setopt($cur, CURLOPT_HEADER, TRUE);
@@ -39,7 +38,7 @@ $textoAdicional = "nn";
 
 if(isset($_SESSION["usuario"]) && $_SESSION["usuario"]->getAdmin()){
     $bd = new BD();
-    $elOyente = Oyente::oyentePorId($idOyente, $bd);
+    $elOyente = Oyente::oyentePorTwitter($cuenta, $bd);
 
     $textoAdicional = '<div class="info_exta"><div class="nombre"><span>Nombre:</span><span>'.$elOyente->getNombre().'</span></div>';
     $textoAdicional.= '<div class="apellido"><span>Apellido:</span><span>'.$elOyente->getApellido().'</span></div>';
@@ -47,7 +46,7 @@ if(isset($_SESSION["usuario"]) && $_SESSION["usuario"]->getAdmin()){
     $textoAdicional.= '<div class="email"><span>Email:</span><span><a href="mailto:'.$elOyente->getEmail().'?Subject=Mensaje%20cafetero">'.$elOyente->getEmail().'</a></span></div>';
     $textoAdicional.= '<div class="fecha_nacimiento"><span>Nacimiento:</span><span>'.str_replace(" 00:00:00", "", $elOyente->getFechaNacimiento()).'</span></div>';
 
-    $inter = Interes::listarOyente($idOyente, $bd);
+    $inter = Interes::listarOyente($elOyente->getIdOyente(), $bd);
     if(count($inter) > 0){
         $textoAdicional.= '<div class="intereses">';
         foreach ($inter as $inte){

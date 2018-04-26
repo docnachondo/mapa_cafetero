@@ -6,17 +6,14 @@ var servicioAutocompletar = new google.maps.places.AutocompleteService();
 var hacerClickMarca = function(){
     var ventana = document.getElementsByClassName('sm_infoWindow')[0];
     var ventanaInterior = ventana.getElementsByClassName('sm_infoWindow')[0];
-    var cuenta = ventanaInterior.getElementsByClassName("enlaceTwitter")[0].innerHTML.trim();
-    var oyente = document.getElementsByName("id_oyente")[0].value;
-
+    var cuenta = ventanaInterior.getElementsByTagName("a")[0].innerHTML.trim();
     cuenta = cuenta.substring(1, cuenta.length).trim();
     var img = document.createElement("img");
     var nombre = document.createElement("div");
     nombre.className = "nombre_twitter";
-    ventanaInterior.getElementsByClassName("enlaceTwitter")[0].href = "https://twitter.com/"+cuenta;
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'ajax/obtieneImagen.php?cuenta='+cuenta+"&oyente="+oyente);
+    xhr.open('GET', 'ajax/obtieneImagen.php?cuenta='+cuenta);
     xhr.onload = function() {
         if (xhr.status === 200) {
             var respuesta = xhr.responseText.split("|");
@@ -63,6 +60,7 @@ window.onload = function () {
 };
 
 function buscarPunto(){
+    document.getElementById("sugerencias").innerHTML = "";
     var direccion = document.getElementById('buscador').value;
     coder.geocode({'address':direccion}, function(respuesta, estado){
         var peque = true;
@@ -76,6 +74,7 @@ function buscarPunto(){
                     }
                     var coordenada = new scribblemaps.LatLng(respuesta[0].geometry.location.lat(), respuesta[0].geometry.location.lng());
                     sm.view.setCenter(coordenada);
+                    sm.view.setCenter(coordenada);
                     if(peque){
                         sm.view.setZoom(18);
                     }else{
@@ -88,7 +87,7 @@ function buscarPunto(){
             };
             xhr.send();
         }
-    });
+    }); 
 }
 
 function verPosicion(){
@@ -105,5 +104,6 @@ function elegirOpcion(ele){
     var texto = ele.innerHTML;
     document.getElementById('buscador').value = texto;
     document.getElementById("sugerencias").innerHTML = "";
+    buscarPunto();
     buscarPunto();
 }

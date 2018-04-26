@@ -21,12 +21,12 @@ if(isset($_SESSION["usuario"])){
                 $muesta = true;
             }
         }
-        if($muesta){ ?><script type="text/javascript" src="js/busca.js?ver=1.031"></script>
-        <? }else{ ?><script type="text/javascript" src="js/muestraMapa.js?ver=1.005"></script>
-        <? } ?><link type="text/css" rel="stylesheet" href="css/estilo.css?ver=1.019"/>
-        <script type="text/javascript" src="js/general.js?ver=1.05"></script>
+        if($muesta){ ?><script type="text/javascript" src="js/busca.js?ver=<?=$GLOBALS["version"]?>"></script>
+        <? }else{ ?><script type="text/javascript" src="js/muestraMapa.js?ver=<?=$GLOBALS["version"]?>"></script>
+        <? } ?>
+        <link type="text/css" rel="stylesheet" href="css/estilo.css?ver=<?=$GLOBALS["version"]?>"/>
+        <script type="text/javascript" src="js/general.js?ver=<?=$GLOBALS["version"]?>"></script>
     </head>
-
     <body class="fondo">
       <div class="contenido">
         <? if(isset($_SESSION["mensaje"])) {?>
@@ -36,23 +36,20 @@ if(isset($_SESSION["usuario"])){
             </div>
         <? $_SESSION["mensaje"] = null;
         } ?>
-
         <?php include("header.php"); ?>
-
         <div id="el_mapa"></div>
-
         <? if(isset($usuario)){
             if($usuario->getActivo() != null){
                 ?>
-                <div id="ventana2" class="flotante">
+                <div id="ventana2" class="flotante" style="display: none;">
                   <div class="formulario">
                     <input type="hidden" id="twitter" value="<?=$usuario->getTwitter()?>"/>
                     <input type="hidden" id="id_oyente" value="<?=$usuario->getIdOyente()?>"/>
                     <input type="text" id="buscador" placeholder="escribe una dirección" onkeyup="buscarSugerencias();"/>
                     <div id="sugerencias"></div>
-                    <input type="button" id="buscar" class="boton" value="BUSCAR" onclick="buscarPunto();"/>
+                    <input type="button" id="buscar" class="boton" value="BUSCAR" onclick="buscarPunto(); buscarPunto();"/>
                     <? if($usuario->getLat() == null) { ?>
-                        <input type="button" id="buscar" class="boton" value="AGREGAR" onclick="agregarElemento();"/>
+                        <input type="button" id="buscar" class="boton" value="AGREGAR" onclick="agregarElemento(false);"/>
                     <? }else{ ?>
                         <input type="button" id="buscar" class="boton" value="MODIFICAR MI POSICIÓN" onclick="modificarElemento();"/>
                     <? } ?>
@@ -69,11 +66,10 @@ if(isset($_SESSION["usuario"])){
                 <div class="formulario">
                     <input type="text" id="buscador" placeholder="escribe una dirección" onkeyup="buscarSugerencias();"/>
                     <div id="sugerencias"></div>
-                    <input type="button" id="buscar" class="boton" value="BUSCAR" onclick="buscarPunto();"/>
+                    <input type="button" id="buscar" class="boton" value="BUSCAR" onclick="buscarPunto();buscarPunto();"/>
                     <a class="cerrarVentana" href="javascript:cerrar('#ventana2');">x</a>
                 </div>
             </div>
-        
             <div id="ventana" class="flotante">
               <form class="formulario" method="post" action="funciones/controlador.php">
                 <input type="hidden" name="accion" value="login"/>
